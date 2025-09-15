@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="allquestions.js"></script>
+</head>
+
+<body>
+    <div class="container mx-auto text-center mt-14 space-y-5">
+        <h2 class="text-3xl md:text-4xl font-semibold capitalize" id="quiztitle"></h2>
+        <div class="flex flex-col gap-3 border-2 w-[80%] md:w-1/2 mx-auto bg-white shadow-lg rounded-lg border border-gray-200 p-6 md:p-8 hidden"
+            id="questionbox">
+            <p class="text-red-600 text-sm" id="timer"></p>
+            <h3 class="my-2 text-blue-900 font-semibold font-mono text-md md:text-lg" id="questiontext"></h3>
+            <div class="space-y-3 bg-gray-100 p-3 font-semibold border-2 border-black" id="answers"></div>
+        </div>
+        <button class="btn btn-soft btn-warning border-1 border-black w-1/4 mx-auto" id="bttn"
+            onclick="startQuiz()">Start</button>
+    </div>
+    <div class="flex justify-center items-center mt-32 font-semibold text-2xl md:text-3xl mx-20 md:mx-10 text-center"
+        id="finalscore"></div>
+
+    <script>
+        let timer;
+        let timeleft = 30;
+        const subject = localStorage.getItem('quizTopic');
+        const questions = allquestions[subject];
+        const bttn = document.getElementById('bttn');
+        let current = 0;
+        let score = 0;
+        document.getElementById('quiztitle').innerText = subject + ' Quiz';
+        function showQuestion() {
+            const q = questions[current];
+            document.getElementById('questiontext').innerText = q.question;
+            const answerBox = document.getElementById('answers');
+            answerBox.innerHTML = '';
+            startTimer();
+            q.answer.forEach(ans => {
+                const btn = document.createElement('button');
+                btn.innerText = ans.text;
+                btn.style.display = 'block';
+                btn.className = 'w-full bg-white p-2 text-black rounded hover:bg-gray-200';
+                btn.onclick = () => {
+                    clearInterval(timer);
+                    const allbtns = answerBox.querySelectorAll('button');
+                    allbtns.forEach(b => b.disabled = true);
+                    if (ans.Correct) {
+                        btn.style.backgroundColor = 'lightgreen';
+                        score++;
+                    }
+                    else {
+                        btn.style.backgroundColor = 'lightcoral';
+                    }
+
+                };
+                answerBox.appendChild(btn);
+            });
+        }
+        function startTimer() {
+            clearInterval(timer);
+            timeleft = 30;
+            document.getElementById('timer').innerText = `Time Left : ${timeleft}s`;
+            timer = setInterval(() => {
+                timeleft--;
+                document.getElementById('timer').innerText = `Time Left : ${timeleft}s`;
+                if (timeleft <= 0) {
+                    clearInterval(timer);
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+        function nextQuestion() {
+            clearInterval(timer);
+            current++;
+            if (current < questions.length) {
+                showQuestion();
+            }
+            else {
+                document.getElementById('questionbox').style.display = 'none';
+                document.getElementById('bttn').style.display = 'none';
+                document.getElementById('quiztitle').style.display = 'none';
+                const scored = document.getElementById('finalscore');
+                scored.innerText = (`Quiz completed!✅ You scored ${score}/${questions.length}`);
+            }
+        }
+        function startQuiz() {
+            document.getElementById('questionbox').classList.remove('hidden');
+            showQuestion();
+            bttn.textContent = "Next";
+            bttn.onclick = nextQuestion;
+        }
+    </script>
+</body>
+
+</html>

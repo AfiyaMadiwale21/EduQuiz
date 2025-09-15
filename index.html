@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <script>
+        function selectQuiz(topic) {
+            localStorage.setItem('quizTopic', topic);
+            window.location.href = 'quiz.html';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mx-auto text-center mt-14 space-y-5">
+        <h1 class="text-3xl font-bold font-sans italic">EduQuiz</h1>
+        <h2 class="text-md text-blue-900 font-sans font-semibold">Select a Quiz Topic</h2>
+        <div class="flex flex-col justify-center space-y-4 w-1/2 md:w-1/3 mx-auto">
+            <button class="btn btn-soft btn-primary border-1 border-black font-bold"
+                onclick="selectQuiz('oops')">OOPs</button>
+            <button class="btn btn-soft btn-info border-1 border-black" onclick="selectQuiz('dbms')">DBMS</button>
+            <button class="btn btn-soft btn-secondary border-1 border-black" onclick="selectQuiz('java')">Java</button>
+            <button class="btn btn-soft btn-accent border-1 border-black"
+                onclick=" selectQuiz('python')">Python</button>
+            <button class="btn btn-soft btn-warning border-1 border-black"
+                onclick="selectQuiz('javascript')">JavaScript</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
