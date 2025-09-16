@@ -5,12 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: white;
+        }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="allquestions.js"></script>
 </head>
 
-<body class="w-full min-h-screen bg-white m-0">
+<body class="min-h-screen w-full bg-white">
     <div class="container mx-auto text-center mt-14 space-y-5">
         <h2 class="text-3xl md:text-4xl font-semibold text-black capitalize" id="quiztitle"></h2>
         <div class="flex flex-col gap-3 border-2 w-[80%] md:w-1/2 mx-auto bg-white shadow-lg rounded-lg border border-gray-200 p-6 md:p-8 hidden"
@@ -19,7 +34,7 @@
             <h3 class="my-2 text-blue-900 font-semibold font-mono text-md md:text-lg" id="questiontext"></h3>
             <div class="space-y-3 bg-gray-100 p-3 font-semibold border-2 border-black" id="answers"></div>
         </div>
-        <button class="btn btn-soft btn-warning border-1 border-black w-1/4 mx-auto" id="bttn"
+        <button class="btn btn-soft btn-warning border-1 border-black w-[250px] md:w-1/4 mx-auto" id="bttn"
             onclick="startQuiz()">Start</button>
     </div>
     <div class="flex justify-center items-center mt-32 font-semibold text-2xl md:text-3xl mx-20 md:mx-10 text-center"
