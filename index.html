@@ -3,13 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover">
     <title>Online Quiz</title>
     <style>
         * {
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
 
         html,
@@ -17,7 +15,6 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            background-color: white;
         }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,10 +28,10 @@
 </head>
 
 <body class="min-h-screen w-full bg-white">
-    <div class="container mx-auto text-center mt-14 space-y-5">
+    <div class="container mx-auto text-center p-14 space-y-5">
         <h1 class="text-4xl font-bold  text-black font-sans italic">EduQuiz</h1>
         <h2 class="text-md text-blue-900 font-sans font-semibold">Select a Quiz Topic</h2>
-        <div class="flex flex-col justify-center space-y-4 w-[300px] md:w-1/3 mx-auto">
+        <div class="flex flex-col justify-center space-y-5 w-[300px] md:w-1/3 mx-auto">
             <button class="btn btn-soft btn-primary border-1 border-black font-bold"
                 onclick="selectQuiz('oops')">OOPs</button>
             <button class="btn btn-soft btn-info border-1 border-black" onclick="selectQuiz('dbms')">DBMS</button>
